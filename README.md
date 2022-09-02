@@ -17,7 +17,9 @@ An implementation of the [Debug Adapter Protocol](https://microsoft.github.io/de
 
 ## `debugpy` CLI Usage
 ### Debugging a script file
-To run a script file with debugging enabled, but without waiting for the client to attach (i.e. code starts executing immediately):
+To run a script file with debugging enabled,
+but without waiting for the client to attach
+(i.e. code starts executing immediately):
 ```console
 -m debugpy --listen localhost:5678 myfile.py
 ```
@@ -61,13 +63,18 @@ The following command will ignore subprocesses started by the debugged process.
 
 ## `debugpy` Import usage
 ### Enabling debugging
-At the beginning of your script, import debugpy, and call `debugpy.listen()` to start the debug adapter, passing a `(host, port)` tuple as the first argument.
+At the beginning of your script,
+import debugpy,
+and call `debugpy.listen()` to start the debug adapter,
+passing a `(host, port)` tuple as the first argument.
 ```python
 import debugpy
 debugpy.listen(("localhost", 5678))
 ...
 ```
-As with the `--listen` command line switch, hostname can be omitted, and defaults to `"127.0.0.1"`:
+As with the `--listen` command line switch,
+hostname can be omitted,
+and defaults to `"127.0.0.1"`:
 ```python
 debugpy.listen(5678)
 ...
@@ -83,7 +90,15 @@ debugpy.wait_for_client()  # blocks execution until client is attached
 ```
 
 ### `breakpoint()` function
-Where available, debugpy supports the standard `breakpoint()` function for programmatic breakpoints. Use `debugpy.breakpoint()` function to get the same behavior when `breakpoint()` handler installed by debugpy is overridden by another handler. If the debugger is attached when either of these functions is invoked, it will pause execution on the calling line, as if it had a breakpoint set. If there's no client attached, the functions do nothing, and the code continues to execute normally.
+Where available,
+debugpy supports the standard `breakpoint()` function for programmatic breakpoints.
+Use `debugpy.breakpoint()` function to get the same behavior when `breakpoint()` handler installed by debugpy is overridden by another handler. If the debugger is attached when either of these functions is 
+nvoked,
+it will pause execution on the calling line,
+as if it had a breakpoint set.
+If there's no client attached,
+    the functions do nothing,
+    and the code continues to execute normally.
 ```python
 import debugpy
 debugpy.listen(...)
@@ -96,7 +111,8 @@ while True:
 
 ## Debugger logging
 
-To enable debugger internal logging via CLI, the `--log-to` switch can be used:
+To enable debugger internal logging via CLI,
+the `--log-to` switch can be used:
 ```console
 -m debugpy --log-to path/to/logs ...
 ```
