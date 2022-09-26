@@ -4,6 +4,7 @@ An implementation of the [Debug Adapter Protocol](https://microsoft.github.io/de
 
 ```
 pip install debugpy
+```
 
 [![Build Status](https://dev.azure.com/debugpy/debugpy/_apis/build/status/debugpy-test-automation?branchName=main)](https://dev.azure.com/debugpy/debugpy/_build/latest?definitionId=1&branchName=main)
 [![GitHub](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://raw.githubusercontent.com/microsoft/debugpy/main/LICENSE)
