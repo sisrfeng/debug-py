@@ -230,7 +230,7 @@ class NetCommandFactoryJson(NetCommandFactory):
                     frames_list = pydevd_frame_utils.create_frames_list_from_frame(topmost_frame)
 
             for frame_id, frame, method_name, original_filename, filename_in_utf8, lineno, applied_mapping, show_as_current_frame in self._iter_visible_frames_info(
-                    py_db, frames_list
+                    py_db, frames_list, flatten_chained=True
                 ):
 
                 try:
@@ -301,6 +301,13 @@ class NetCommandFactoryJson(NetCommandFactory):
     @overrides(NetCommandFactory.make_io_message)
     def make_io_message(self, msg, ctx):
         category = 'stdout' if int(ctx) == 1 else 'stderr'
+        body = OutputEventBody(msg, category)
+        event = OutputEvent(body)
+        return NetCommand(CMD_WRITE_TO_CONSOLE, 0, event, is_json=True)
+
+    @overrides(NetCommandFactory.make_console_message)
+    def make_console_message(self, msg):
+        category = 'console'
         body = OutputEventBody(msg, category)
         event = OutputEvent(body)
         return NetCommand(CMD_WRITE_TO_CONSOLE, 0, event, is_json=True)
